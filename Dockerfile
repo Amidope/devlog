@@ -7,9 +7,9 @@ RUN apk add --no-cache make bash bash-completion
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN set -eux; \
-    install-php-extensions xdebug;
+    install-php-extensions pdo_pgsql;
 
-COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
+#COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
 
 # Добавить системного пользователя с нужным UID и GID
 ARG UID=1000

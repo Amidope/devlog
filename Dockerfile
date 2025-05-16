@@ -20,6 +20,7 @@ RUN addgroup -g ${GID} devgroup && \
 
 ENV TERM=xterm-256color
 RUN echo "PS1='\e[92m\u\e[0m@\e[94m\h\e[0m:\e[35m\w\e[0m# '" >> /home/devuser/.bashrc
+RUN echo "alias a=\"php artisan\"" >> /home/devuser/.bashrc
 
 WORKDIR /app
 COPY . .

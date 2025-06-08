@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => str(fake()->sentence())->beforeLast('.')->title(),
-            'body' => fake()->realTextBetween(5000, 10000)
+            'body' => fake()->realTextBetween(100, 1000)
         ];
     }
 }

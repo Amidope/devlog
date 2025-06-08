@@ -11,4 +11,9 @@ class PostService
     {
         return Post::create($data);
     }
+
+    public function update(array $data, Post $post)
+    {
+        $post->update($data);
+    }
 }

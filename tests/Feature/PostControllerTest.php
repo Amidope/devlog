@@ -34,29 +34,34 @@ class PostControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $user = User::factory();
         $this->actingAs($this->user);
         $data = Post::factory()->make()->toArray();
-//        dd($data);
         $response = $this->postJson(route('posts.store'), $data);
-        $response->assertStatus(Response::HTTP_CREATED);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('posts', $data);
         // add json structure test
         // add auth failure
     }
 
     public function testShow(): void
     {
-//        $response = $this->getJson()
+        $response = $this->getJson(route('posts.show', $this->post));
+        $response->assertOk();
     }
 
     public function testUpdate(): void
     {
-
+        $data = Post::factory()->make()->toArray();
+        $response = $this->patchJson(route('posts.update', $this->post), $data);
+        $response->assertOk();
     }
 
     public function testDelete(): void
     {
-
+        $id = $this->post->id;
+        $response = $this->deleteJson(route('posts.destroy', $this->post));
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('posts', ['id' => $id]);
     }
 
 }

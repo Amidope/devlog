@@ -12,9 +12,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content',
-        'post_id',
-        'user_id'
+        'content'
     ];
 
     public function post(): BelongsTo

@@ -11,5 +11,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::apiResources([
     'posts' => PostController::class,
-    '/posts/{post}/comments' => CommentController::class
 ]);
+
+Route::resource('posts/{post}/comments', CommentController::class)->only('index', 'store');
+Route::resource('comments', CommentController::class)->only(['update', 'destroy']);

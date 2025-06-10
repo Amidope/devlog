@@ -54,6 +54,11 @@ class PostControllerTest extends TestCase
         $data = Post::factory()->make()->toArray();
         $response = $this->patchJson(route('posts.update', $this->post), $data);
         $response->assertOk();
+
+        $data['body'] = fake()->text();
+        $response = $this->patchJson(route('posts.update', $this->post), $data);
+        $response->assertOk();
+
     }
 
     public function testDelete(): void

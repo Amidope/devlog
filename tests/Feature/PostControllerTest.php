@@ -28,8 +28,7 @@ class PostControllerTest extends TestCase
 
     public function testIndex(): void
     {
-        $this->get(route('posts.index'))
-            ->assertOk();
+        $this->getJson(route('posts.index'))->assertOk();
     }
 
     public function testStore(): void

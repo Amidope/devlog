@@ -19,5 +19,9 @@ Route::apiResources([
     'posts' => PostController::class,
 ]);
 
-Route::resource('posts/{post}/comments', CommentController::class)->only('index', 'store');
-Route::resource('comments', CommentController::class)->only(['update', 'destroy']);
+Route::post('posts/{post}/comments', [CommentController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('posts/{post}/comments', [CommentController::class, 'store']);
+    Route::resource('comments', CommentController::class)->only(['update', 'destroy']);
+});

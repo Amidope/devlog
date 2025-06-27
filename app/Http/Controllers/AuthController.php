@@ -29,7 +29,10 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid email or password.'], 401);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['token' => $token]);
+        return response()->json([
+            'access_token' => $token,
+            'token_type'=> 'Bearer'
+        ]);
     }
 
     public function logout(Request $request)

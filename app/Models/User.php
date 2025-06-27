@@ -48,11 +48,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function isAdmin(): bool
-    {
-        return $this->is_admin;
-    }
-
     public function comments(): hasMany
     {
         return $this->hasMany(Comment::class);

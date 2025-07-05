@@ -22,7 +22,7 @@ Route::resource('posts', PostController::class)
     ->only('index', 'show');
 
 // comments
-Route::post('posts/{post}/comments', [CommentController::class, 'index']);
+Route::get('posts/{post}/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('posts/{post}/comments', [CommentController::class, 'store']);
     Route::resource('comments', CommentController::class)->only(['update', 'destroy']);

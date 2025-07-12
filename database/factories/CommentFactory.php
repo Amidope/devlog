@@ -21,7 +21,6 @@ class CommentFactory extends Factory
         return [
             'content' => fake()->text(70),
             'post_id' => Post::factory(),
-            'user_id' => User::factory(),
         ];
     }
 }

@@ -36,8 +36,9 @@ class CommentController extends Controller
         $comment = Comment::create([
             ...$request->validated(),
             'post_id' => $post->id,
-            'user_id' => $request->user()->id
         ]);
+        $comment->user_id = $request->user()->id;
+        $comment->save();
         return response($comment, 201);
     }
 

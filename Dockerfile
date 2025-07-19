@@ -7,7 +7,7 @@ RUN apk add --no-cache make bash bash-completion
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN set -eux; \
-    install-php-extensions pdo_pgsql;
+    install-php-extensions pdo_pgsql redis;
 
 #COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
 

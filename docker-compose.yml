@@ -4,7 +4,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-#    user: "${UID}:${GID}"
+    depends_on:
+      - redis
+      - db
+    #    user: "${UID}:${GID}"
     user: "1000:1000"
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -22,6 +25,14 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
-
+  redis:
+    env_file: ".env"
+    image: redis:8-alpine3.21
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --requirepass "${REDIS_PASSWORD}"
+    volumes:
+      - redis-data:/data
 volumes:
   db-data:
+  redis-data:

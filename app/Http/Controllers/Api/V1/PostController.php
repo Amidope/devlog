@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        return Post::latest('created_at')->paginate(10);
+        return $this->service->getPostsPage($request->input('page', 1));
     }
 
     /**

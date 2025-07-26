@@ -6,9 +6,15 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Services\PostService;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(
+        private readonly PostService $service
+    )
+    {}
+
     /**
      * Display a listing of the resource.
      */
@@ -20,9 +26,9 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request, PostService $service)
+    public function store(StorePostRequest $request)
     {
-        $post = $service->create($request->validated());
+        $post = $this->service->create($request->validated());
         return response()->json($post, status: 201);
     }
 
@@ -37,9 +43,10 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post, PostService $service)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $service->update($request->validated(), $post);
+        dump($request->validated());
+        $this->service->update($request->validated(), $post);
         return response()->json($post);
     }
 
@@ -48,7 +55,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
+        $this->service->delete($post);
         return response(status: 204);
     }
 }

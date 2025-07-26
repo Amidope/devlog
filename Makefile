@@ -9,9 +9,10 @@ clear-cache:
 	php artisan view:clear
 rollback:
 	php artisan migrate:rollback
-setenv:
+set-env:
 	cp -n .env.example .env || true
-#setup:
-#	php artisan key:generate
-#	php artisan migrate
-#	php artisan db:seed
+setup:
+	set-env
+	php artisan key:generate
+	php artisan migrate
+	php artisan db:seed

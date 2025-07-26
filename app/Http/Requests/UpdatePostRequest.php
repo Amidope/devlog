@@ -16,11 +16,11 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => [
-                'required',
                 'max:255',
-                Rule::unique('posts', 'title')->ignore($this->route('post')),
+                Rule::unique('posts', 'title')
+                    ->ignore($this->route('post')),
             ],
-            'body' => 'required'
+            'body' => 'string'
         ];
     }
 }

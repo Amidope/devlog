@@ -12,7 +12,7 @@ class PostService
         return Post::create($data);
     }
 
-    public function update(array $data, Post $post)
+    public function update(array $data, Post $post): void
     {
         $post->update($data);
     }

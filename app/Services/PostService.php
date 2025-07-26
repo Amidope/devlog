@@ -16,4 +16,9 @@ class PostService
     {
         $post->update($data);
     }
+
+    public function delete(Post $post): void
+    {
+        $post->delete();
+    }
 }

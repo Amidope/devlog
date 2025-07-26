@@ -18,7 +18,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return Post::latest('created_at')->paginate(10);
     }

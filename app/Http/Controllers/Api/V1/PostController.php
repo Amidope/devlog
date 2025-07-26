@@ -45,7 +45,6 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        dump($request->validated());
         $this->service->update($request->validated(), $post);
         return response()->json($post);
     }

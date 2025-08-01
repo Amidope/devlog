@@ -24,6 +24,8 @@ RUN echo "alias a=\"php artisan\"" >> /home/devuser/.bashrc
 
 WORKDIR /app
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
 ENTRYPOINT ["entrypoint.sh"]
 
 CMD ["bash", "-c", "make start"]

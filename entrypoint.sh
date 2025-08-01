@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 set -e
 
 if [ ! -f vendor/autoload.php ]; then

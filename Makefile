@@ -12,7 +12,6 @@ rollback:
 set-env:
 	cp -n .env.example .env || true
 setup:
-	set-env
 	php artisan key:generate
 	php artisan migrate
 	php artisan db:seed

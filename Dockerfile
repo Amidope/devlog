@@ -23,8 +23,8 @@ RUN echo "PS1='\e[92m\u\e[0m@\e[94m\h\e[0m:\e[35m\w\e[0m# '" >> /home/devuser/.b
 RUN echo "alias a=\"php artisan\"" >> /home/devuser/.bashrc
 
 WORKDIR /app
-COPY . .
-#RUN composer install --no-interaction
+
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD ["bash", "-c", "make start"]
 #CMD ["tail", "-f", "/dev/null"]

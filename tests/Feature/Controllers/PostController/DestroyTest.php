@@ -45,6 +45,7 @@ class DestroyTest extends TestCase
             ->deleteJson(route('posts.destroy', $this->post))
             ->assertForbidden();
 
-        $this->assertDatabaseHas('posts', $this->post->toArray());
+        $this->assertDatabaseHas('posts', $this->post->getAttributes());
+
     }
 }

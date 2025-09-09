@@ -41,6 +41,7 @@ class UpdateTest extends TestCase
         $this->actingAs($this->user)
             ->patchJson(route('posts.update', $this->post), $this->postData)
             ->assertForbidden();
-        $this->assertDatabaseHas('posts', $this->post->toArray());
+            
+        $this->assertDatabaseHas('posts', $this->post->getAttributes());
     }
 }
